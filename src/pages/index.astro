@@ -22,6 +22,10 @@ const nextGameDay = remainingDays[0]
     <GameList days={remainingDays} />
     <!-- UpcomingGames -->
   </main>
+
+  <footer>
+    <a href='https://github.com/SceptreData/greasy-geese'>Github</a>
+  </footer>
 </Layout>
 
 <style>
@@ -29,6 +33,7 @@ const nextGameDay = remainingDays[0]
     margin: auto;
     padding: 2rem 2.5rem;
     margin-top: 10vh;
+    margin-bottom: 10vh;
     max-width: 60ch;
     background: white;
     border: 1px solid rgba(211, 211, 211, 0.395);
@@ -71,5 +76,12 @@ const nextGameDay = remainingDays[0]
     grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
     gap: 1rem;
     padding: 0;
+  }
+  footer {
+    max-width: 60ch;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0.5rem;
   }
 </style>
