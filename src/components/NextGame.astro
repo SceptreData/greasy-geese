@@ -1,0 +1,68 @@
+---
+import { formatDate } from '../lib'
+import type { GameDay, Team, Location, Game } from '../types'
+
+export interface Props {
+  day: GameDay
+}
+const { day } = Astro.props
+
+function findGreasyGame(day: GameDay) {
+  for (let game of day.games) {
+    const teams = Object.values(game.teams).map(t => t.name)
+
+    if (teams.includes('Greasy Geese')) return game
+  }
+
+  return false
+}
+
+let gameDayMsg
+let location: Location
+let enemy
+const game = findGreasyGame(day)
+if (game) {
+  const dateStr = formatDate(day.date)
+  location = game.location
+  enemy = Object.values(game.teams).filter(t => !t.name.includes('Greasy'))[0]
+} else {
+  gameDayMsg = "It's a BYE week ladies, NO GAME!!!"
+}
+// asasa
+
+const showGame = game != false && game.location != undefined
+---
+
+{
+  !showGame ? (
+    <div>{gameDayMsg}</div>
+  ) : (
+    <main>
+      <h2>
+        NEXT GAME
+        <br />
+        {game.time} at
+        <a href={location!.directions!}>{location!.name}</a>
+      </h2>
+      {enemy && (
+        <p>
+          We are playing against the<span class='enemy'> {enemy.name}</span>
+        </p>
+      )}
+    </main>
+  )
+}
+
+<style>
+  h2 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.125rem;
+  }
+  .enemy {
+    font-weight: 600;
+    font-size: 2rem;
+    color: red;
+  }
+</style>

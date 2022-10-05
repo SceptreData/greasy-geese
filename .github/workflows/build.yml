@@ -1,0 +1,25 @@
+# Trigger Netlify Build
+name: Trigger greasygeese.com Build
+on:
+  schedule:
+    - cron: '0 */4 * * *' # Once every 4 hours
+  # push:
+  #   branches: [main]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  BUILD_HOOK: ${{ secrets.BUILD_HOOK }}
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Fire Netlify Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: POST to Build Hook
+        run: curl -X POST -d {} https://api.netlify.com/build_hooks/$BUILD_HOOK

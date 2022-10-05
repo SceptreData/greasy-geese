@@ -1,0 +1,65 @@
+---
+import { formatDate } from '../lib'
+import type { GameDay, Team } from '../types'
+
+export interface Props {
+  days: GameDay[]
+}
+
+const { days } = Astro.props
+
+type GameTeams = {
+  away: Team
+  home: Team
+}
+function isGreasyGame(teams: GameTeams) {
+  return [teams.away.name, teams.home.name].includes('Greasy Geese')
+}
+---
+
+<section>
+  <h2>Remaining Games</h2>
+
+  {
+    days.map(day => {
+      return (
+        <div>
+          <header>
+            <h4>{formatDate(day.date)}</h4>
+          </header>
+          <ul>
+            {day.games.map(({ teams, location, time }) => {
+              const { away, home } = teams
+              return (
+                <li class={isGreasyGame(teams) ? 'greasy-game' : ''}>
+                  {away.name} vs. {home.name}
+                  <br />
+                  {time} @ <a href={location.directions}>{location.name}</a> |{' '}
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      )
+    })
+  }
+</section>
+
+<style>
+  h2 {
+    text-decoration: underline;
+  }
+  h4 {
+    font-size: 1.15rem;
+    margin-bottom: 0;
+  }
+  ul {
+    padding-left: 1rem;
+  }
+  li {
+    margin-bottom: 0.35rem;
+  }
+  li.greasy-game {
+    font-weight: 700;
+  }
+</style>

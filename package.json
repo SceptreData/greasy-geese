@@ -11,6 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.4.4"
+    "@types/cheerio": "^0.22.31",
+    "astro": "^1.4.4",
+    "cheerio": "^1.0.0-rc.12"
   }
 }
