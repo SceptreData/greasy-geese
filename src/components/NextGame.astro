@@ -41,8 +41,7 @@ const showGame = game != false && game.location != undefined
       <h2>
         NEXT GAME
         <br />
-        {game.time} at
-        <a href={location!.directions!}>{location!.name}</a>
+        {game.time} at <a href={location!.directions!}>{location!.name}</a>
       </h2>
       {enemy && (
         <p>
