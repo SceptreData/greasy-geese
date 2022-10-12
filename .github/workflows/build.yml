@@ -4,15 +4,15 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 */4 * * *' # Once every 4 hours
-  # push:
-  #   branches: [main]
+  push:
+    branches: [main]
 
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 
 env:
-  BUILD_HOOK: ${{ secrets.BUILD_HOOK }}
+  BUILD_HOOK: https://api.netlify.com/build_hooks/${{ secrets.BUILD_HOOK }}
 
 permissions:
   contents: read
@@ -23,4 +23,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: POST to Build Hook
-        run: curl -X POST -d {} https://api.netlify.com/build_hooks/$BUILD_HOOK
+        run: curl -X POST -d {} ${{ env.BUILD_HOOK }}
