@@ -1,6 +1,7 @@
 # Trigger Netlify Build
 name: Trigger greasygeese.com Build
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 */4 * * *' # Once every 4 hours
   # push:
