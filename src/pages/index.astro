@@ -10,7 +10,12 @@ import { fetchSchedule, fetchStandings } from '../lib'
 
 const schedule = await fetchSchedule(SCHEDULE_URL)
 
-const remainingDays = schedule.filter(gameDay => gameDay.date >= new Date())
+const remainingDays = schedule.filter(gameDay => {
+  const curDate = new Date()
+  curDate.setHours(0, 0, 0, 0)
+
+  return gameDay.date >= curDate
+})
 const nextGameDay = remainingDays[0]
 ---
 
