@@ -2,10 +2,8 @@ import * as cheerio from 'cheerio'
 import type { Team, Location, GameDay, Game } from '../types'
 
 let $: any
-export async function fetchSchedule(url: string): Promise<GameDay[]> {
-  const response = await fetch(
-    'https://www.edmontonsportsclub.com/leagues/ball-hockey/schedules/fall-2022/tues-rec-B'
-  )
+export async function fetchSchedule(scheduleUrl: string): Promise<GameDay[]> {
+  const response = await fetch(scheduleUrl)
   const txt = await response.text()
 
   $ = cheerio.load(txt)
