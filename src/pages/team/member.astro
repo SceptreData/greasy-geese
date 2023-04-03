@@ -1,0 +1,14 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import { fetchPlayers } from '../../lib/stats/player'
+export async function getStaticPaths() {
+  // const names = await fetchPlayers()
+  // console.log(names)
+}
+
+const names = await fetchPlayers()
+---
+
+<Layout title='PLAYER'>
+  <h1>Player</h1>
+</Layout>

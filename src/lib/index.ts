@@ -8,3 +8,7 @@ export const formatDate = (d: Date) =>
     month: 'long',
     day: 'numeric',
   })
+
+export const slugify = (str: string) => {
+  return str.toLowerCase().replace(/ /g, '-')
+}
