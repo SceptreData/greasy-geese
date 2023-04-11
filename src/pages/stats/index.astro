@@ -1,27 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import {
-  fetchSeasonTotals,
-  buildTeamTable,
-  buildOverviewTable,
-  playerStatType,
-} from '../../lib/stats/seasonTotals'
+// import {
+//   fetchSeasonTotals,
+//   buildTeamTable,
+//   buildOverviewTable,
+//   playerStatType,
+// } from '../../lib/stats/seasonTotals'
 
 function toTitleCase(str: string) {
   const result = str.replace(/([A-Z])/g, ' $1')
   return result.charAt(0).toUpperCase() + result.slice(1)
 }
 
-const allSeasonStats = await fetchSeasonTotals()
-const team = buildTeamTable(allSeasonStats[0])
-const overview = buildOverviewTable(allSeasonStats[0])
+// const allSeasonStats = await fetchSeasonTotals()
+// const team = buildTeamTable(allSeasonStats[0])
+// const overview = buildOverviewTable(allSeasonStats[0])
 ---
 
 <Layout title='Greasy Geese - Home of the Greasy'>
   <main>
     <h1>Totals</h1>
     <table>
-      <thead>
+      <!-- <thead>
         <th></th>
         {playerStatType.map(stat => <th>{toTitleCase(stat)}</th>)}
 
@@ -105,7 +105,7 @@ const overview = buildOverviewTable(allSeasonStats[0])
         </style>
 
 
-      </thead>
+      </thead> -->
     </table>
   </main>
 </Layout>
